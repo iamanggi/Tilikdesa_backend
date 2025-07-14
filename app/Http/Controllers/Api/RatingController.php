@@ -32,7 +32,7 @@ class RatingController extends Controller
 
         // Check if report exists and belongs to user
         $report = Report::where('id', $request->report_id)
-                       ->where('user_id', Auth::id())
+                       ->where('id_user', Auth::id())
                        ->first();
 
         if (!$report) {
@@ -52,7 +52,7 @@ class RatingController extends Controller
 
         // Check if already rated
         $existingRating = Rating::where('report_id', $request->report_id)
-                               ->where('user_id', Auth::id())
+                               ->where('id_user', Auth::id())
                                ->first();
 
         if ($existingRating) {
@@ -65,7 +65,7 @@ class RatingController extends Controller
         try {
             $rating = Rating::create([
                 'report_id' => $request->report_id,
-                'user_id' => Auth::id(),
+                'id_user' => Auth::id(),
                 'rating' => $request->rating,
                 'comment' => $request->comment
             ]);
@@ -103,7 +103,7 @@ class RatingController extends Controller
         }
 
         $rating = Rating::where('id', $id)
-                       ->where('user_id', Auth::id())
+                       ->where('id_user', Auth::id())
                        ->first();
 
         if (!$rating) {
@@ -191,7 +191,7 @@ class RatingController extends Controller
     public function destroy($id)
     {
         $rating = Rating::where('id', $id)
-                       ->where('user_id', Auth::id())
+                       ->where('id_user', Auth::id())
                        ->first();
 
         if (!$rating) {

@@ -90,7 +90,7 @@
                                 <a href="#endpoints-GETapi-categories-search">Search categories</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-POSTapi-logout">
-                                <a href="#endpoints-POSTapi-logout">POST api/logout</a>
+                                <a href="#endpoints-POSTapi-logout">Logout the authenticated user.</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-profile">
                                 <a href="#endpoints-GETapi-profile">GET api/profile</a>
@@ -108,16 +108,16 @@
                                 <a href="#endpoints-GETapi-dashboard-user-recent-reports">Get user's recent reports</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-reports">
-                                <a href="#endpoints-GETapi-reports">GET api/reports</a>
+                                <a href="#endpoints-GETapi-reports">Menampilkan daftar laporan.</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-POSTapi-reports">
-                                <a href="#endpoints-POSTapi-reports">POST api/reports</a>
+                                <a href="#endpoints-POSTapi-reports">Simpan laporan baru.</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-reports--id-">
-                                <a href="#endpoints-GETapi-reports--id-">GET api/reports/{id}</a>
+                                <a href="#endpoints-GETapi-reports--id-">Menampilkan detail laporan berdasarkan ID.</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-reports--id-">
-                                <a href="#endpoints-DELETEapi-reports--id-">DELETE api/reports/{id}</a>
+                                <a href="#endpoints-DELETEapi-reports--id-">Hapus laporan.</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-notifications">
                                 <a href="#endpoints-GETapi-notifications">Get user notifications</a>
@@ -165,7 +165,7 @@
                                 <a href="#endpoints-GETapi-dashboard-admin-performance-metrics">Get performance metrics</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-PUTapi-admin-reports--id--status">
-                                <a href="#endpoints-PUTapi-admin-reports--id--status">PUT api/admin/reports/{id}/status</a>
+                                <a href="#endpoints-PUTapi-admin-reports--id--status">Update status laporan oleh admin.</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-categories">
                                 <a href="#endpoints-GETapi-admin-categories">Display all categories (for admin)</a>
@@ -198,25 +198,25 @@
                                 <a href="#endpoints-GETapi-admin-ratings-statistics">Get rating statistics (admin only)</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-pemeliharaan">
-                                <a href="#endpoints-GETapi-admin-pemeliharaan">Display a listing of the resource.</a>
+                                <a href="#endpoints-GETapi-admin-pemeliharaan">Menampilkan semua data pemeliharaan</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-pemeliharaan-create">
-                                <a href="#endpoints-GETapi-admin-pemeliharaan-create">Show the form for creating a new resource.</a>
+                                <a href="#endpoints-GETapi-admin-pemeliharaan-create">Data untuk form create</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-POSTapi-admin-pemeliharaan">
-                                <a href="#endpoints-POSTapi-admin-pemeliharaan">Store a newly created resource in storage.</a>
+                                <a href="#endpoints-POSTapi-admin-pemeliharaan">Menyimpan data pemeliharaan baru</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-pemeliharaan--pemeliharaan_id-">
-                                <a href="#endpoints-GETapi-admin-pemeliharaan--pemeliharaan_id-">Display the specified resource.</a>
+                                <a href="#endpoints-GETapi-admin-pemeliharaan--pemeliharaan_id-">Menampilkan detail satu pemeliharaan</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-admin-pemeliharaan--pemeliharaan_id--edit">
-                                <a href="#endpoints-GETapi-admin-pemeliharaan--pemeliharaan_id--edit">Show the form for editing the specified resource.</a>
+                                <a href="#endpoints-GETapi-admin-pemeliharaan--pemeliharaan_id--edit">Data untuk form edit</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-PUTapi-admin-pemeliharaan--pemeliharaan_id-">
-                                <a href="#endpoints-PUTapi-admin-pemeliharaan--pemeliharaan_id-">Update the specified resource in storage.</a>
+                                <a href="#endpoints-PUTapi-admin-pemeliharaan--pemeliharaan_id-">Update data pemeliharaan</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-admin-pemeliharaan--pemeliharaan_id-">
-                                <a href="#endpoints-DELETEapi-admin-pemeliharaan--pemeliharaan_id-">Remove the specified resource from storage.</a>
+                                <a href="#endpoints-DELETEapi-admin-pemeliharaan--pemeliharaan_id-">Hapus data pemeliharaan</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi--fallbackPlaceholder-">
                                 <a href="#endpoints-GETapi--fallbackPlaceholder-">GET api/{fallbackPlaceholder}</a>
@@ -232,7 +232,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: June 27, 2025</li>
+        <li>Last updated: July 13, 2025</li>
     </ul>
 </div>
 
@@ -940,7 +940,18 @@ access-control-allow-origin: *
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;success&quot;: true,
-    &quot;data&quot;: []
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;jalan rusak&quot;,
+            &quot;description&quot;: &quot;jalan rusak&quot;,
+            &quot;is_active&quot;: true,
+            &quot;created_by&quot;: 2,
+            &quot;updated_by&quot;: null,
+            &quot;created_at&quot;: &quot;2025-07-09T09:08:52.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-09T09:08:52.000000Z&quot;
+        }
+    ]
 }</code>
  </pre>
     </span>
@@ -1065,7 +1076,18 @@ access-control-allow-origin: *
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;success&quot;: true,
-    &quot;data&quot;: []
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;jalan rusak&quot;,
+            &quot;description&quot;: &quot;jalan rusak&quot;,
+            &quot;is_active&quot;: true,
+            &quot;created_by&quot;: 2,
+            &quot;updated_by&quot;: null,
+            &quot;created_at&quot;: &quot;2025-07-09T09:08:52.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-07-09T09:08:52.000000Z&quot;
+        }
+    ]
 }</code>
  </pre>
     </span>
@@ -1140,9 +1162,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="endpoints-POSTapi-logout">POST api/logout</h2>
+                    <h2 id="endpoints-POSTapi-logout">Logout the authenticated user.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -1194,7 +1217,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-logout" data-method="POST"
       data-path="api/logout"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
@@ -1389,9 +1412,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --form "nama=vmqeopfuudtdsufvyvddq"\
-    --form "bahasa=id"\
-    --form "password=OP&gt;@;4"\
-    --form "foto_profil=@C:\Users\LENOVO\AppData\Local\Temp\php17EC.tmp" </code></pre></div>
+    --form "phone=amniihfqcoynl"\
+    --form "address=consequatur"\
+    --form "village=consequatur"\
+    --form "sub_district=consequatur"\
+    --form "password=[2UZ5ij-e/dl4"\
+    --form "photo=@C:\Users\LENOVO\AppData\Local\Temp\phpD664.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -1406,9 +1432,12 @@ const headers = {
 
 const body = new FormData();
 body.append('nama', 'vmqeopfuudtdsufvyvddq');
-body.append('bahasa', 'id');
-body.append('password', 'OP&gt;@;4');
-body.append('foto_profil', document.querySelector('input[name="foto_profil"]').files[0]);
+body.append('phone', 'amniihfqcoynl');
+body.append('address', 'consequatur');
+body.append('village', 'consequatur');
+body.append('sub_district', 'consequatur');
+body.append('password', '[2UZ5ij-e/dl4');
+body.append('photo', document.querySelector('input[name="photo"]').files[0]);
 
 fetch(url, {
     method: "PUT",
@@ -1502,17 +1531,48 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>Must not be greater than 255 characters. Example: <code>vmqeopfuudtdsufvyvddq</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>bahasa</code></b>&nbsp;&nbsp;
+            <b style="line-height: 2;"><code>phone</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
- &nbsp;
+<i>optional</i> &nbsp;
                 <input type="text" style="display: none"
-                              name="bahasa"                data-endpoint="PUTapi-profile"
-               value="id"
+                              name="phone"                data-endpoint="PUTapi-profile"
+               value="amniihfqcoynl"
                data-component="body">
     <br>
-<p>Example: <code>id</code></p>
-Must be one of:
-<ul style="list-style-type: square;"><li><code>id</code></li> <li><code>en</code></li></ul>
+<p>Must not be greater than 15 characters. Example: <code>amniihfqcoynl</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="address"                data-endpoint="PUTapi-profile"
+               value="consequatur"
+               data-component="body">
+    <br>
+<p>Example: <code>consequatur</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>village</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="village"                data-endpoint="PUTapi-profile"
+               value="consequatur"
+               data-component="body">
+    <br>
+<p>Example: <code>consequatur</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>sub_district</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="sub_district"                data-endpoint="PUTapi-profile"
+               value="consequatur"
+               data-component="body">
+    <br>
+<p>Example: <code>consequatur</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -1520,21 +1580,21 @@ Must be one of:
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="PUTapi-profile"
-               value="OP>@;4"
+               value="[2UZ5ij-e/dl4"
                data-component="body">
     <br>
-<p>Must be at least 6 characters. Example: <code>OP&gt;@;4</code></p>
+<p>Must be at least 6 characters. Example: <code>[2UZ5ij-e/dl4</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>foto_profil</code></b>&nbsp;&nbsp;
+            <b style="line-height: 2;"><code>photo</code></b>&nbsp;&nbsp;
 <small>file</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="file" style="display: none"
-                              name="foto_profil"                data-endpoint="PUTapi-profile"
+                              name="photo"                data-endpoint="PUTapi-profile"
                value=""
                data-component="body">
     <br>
-<p>Must be an image. Must not be greater than 2048 kilobytes. Example: <code>C:\Users\LENOVO\AppData\Local\Temp\php17EC.tmp</code></p>
+<p>Must be an image. Must not be greater than 2048 kilobytes. Example: <code>C:\Users\LENOVO\AppData\Local\Temp\phpD664.tmp</code></p>
         </div>
         </form>
 
@@ -1928,12 +1988,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="endpoints-GETapi-reports">GET api/reports</h2>
+                    <h2 id="endpoints-GETapi-reports">Menampilkan daftar laporan.</h2>
 
 <p>
 </p>
 
-
+<ul>
+<li>Admin: lihat semua laporan</li>
+<li>Masyarakat: lihat laporan miliknya</li>
+</ul>
 
 <span id="example-requests-GETapi-reports">
 <blockquote>Example request:</blockquote>
@@ -2052,7 +2115,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="endpoints-POSTapi-reports">POST api/reports</h2>
+                    <h2 id="endpoints-POSTapi-reports">Simpan laporan baru.</h2>
 
 <p>
 </p>
@@ -2071,8 +2134,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "category_id=consequatur"\
     --form "title=mqeopfuudtdsufvyvddqa"\
     --form "description=Molestias ipsam sit veniam sed fuga aspernatur."\
-    --form "location_id=consequatur"\
-    --form "photo=@C:\Users\LENOVO\AppData\Local\Temp\php188A.tmp" </code></pre></div>
+    --form "latitude=11613.31890586"\
+    --form "longitude=11613.31890586"\
+    --form "address=opfuudtdsufvyvddqamni"\
+    --form "photo=@C:\Users\LENOVO\AppData\Local\Temp\phpD684.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -2089,7 +2154,9 @@ const body = new FormData();
 body.append('category_id', 'consequatur');
 body.append('title', 'mqeopfuudtdsufvyvddqa');
 body.append('description', 'Molestias ipsam sit veniam sed fuga aspernatur.');
-body.append('location_id', 'consequatur');
+body.append('latitude', '11613.31890586');
+body.append('longitude', '11613.31890586');
+body.append('address', 'opfuudtdsufvyvddqamni');
 body.append('photo', document.querySelector('input[name="photo"]').files[0]);
 
 fetch(url, {
@@ -2206,17 +2273,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>Must be at least 10 characters. Example: <code>Molestias ipsam sit veniam sed fuga aspernatur.</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>location_id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="location_id"                data-endpoint="POSTapi-reports"
-               value="consequatur"
-               data-component="body">
-    <br>
-<p>The <code>id</code> of an existing record in the locations table. Example: <code>consequatur</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>photo</code></b>&nbsp;&nbsp;
 <small>file</small>&nbsp;
  &nbsp;
@@ -2225,11 +2281,44 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be an image. Must not be greater than 2048 kilobytes. Example: <code>C:\Users\LENOVO\AppData\Local\Temp\php188A.tmp</code></p>
+<p>Must be an image. Must not be greater than 2048 kilobytes. Example: <code>C:\Users\LENOVO\AppData\Local\Temp\phpD684.tmp</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>latitude</code></b>&nbsp;&nbsp;
+<small>number</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="latitude"                data-endpoint="POSTapi-reports"
+               value="11613.31890586"
+               data-component="body">
+    <br>
+<p>Example: <code>11613.31890586</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>longitude</code></b>&nbsp;&nbsp;
+<small>number</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="longitude"                data-endpoint="POSTapi-reports"
+               value="11613.31890586"
+               data-component="body">
+    <br>
+<p>Example: <code>11613.31890586</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="address"                data-endpoint="POSTapi-reports"
+               value="opfuudtdsufvyvddqamni"
+               data-component="body">
+    <br>
+<p>Must not be greater than 255 characters. Example: <code>opfuudtdsufvyvddqamni</code></p>
         </div>
         </form>
 
-                    <h2 id="endpoints-GETapi-reports--id-">GET api/reports/{id}</h2>
+                    <h2 id="endpoints-GETapi-reports--id-">Menampilkan detail laporan berdasarkan ID.</h2>
 
 <p>
 </p>
@@ -2365,7 +2454,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="endpoints-DELETEapi-reports--id-">DELETE api/reports/{id}</h2>
+                    <h2 id="endpoints-DELETEapi-reports--id-">Hapus laporan.</h2>
 
 <p>
 </p>
@@ -3546,6 +3635,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-dashboard-admin-stats">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-dashboard-admin-stats" hidden>
     <blockquote>Received response<span
@@ -3654,6 +3759,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-dashboard-admin-reports-by-category">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-dashboard-admin-reports-by-category" hidden>
     <blockquote>Received response<span
@@ -3762,6 +3883,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-dashboard-admin-reports-trend">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-dashboard-admin-reports-trend" hidden>
     <blockquote>Received response<span
@@ -3870,6 +4007,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-dashboard-admin-monthly-reports">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-dashboard-admin-monthly-reports" hidden>
     <blockquote>Received response<span
@@ -3978,6 +4131,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-dashboard-admin-recent-reports">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-dashboard-admin-recent-reports" hidden>
     <blockquote>Received response<span
@@ -4086,6 +4255,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-dashboard-admin-priority-areas">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-dashboard-admin-priority-areas" hidden>
     <blockquote>Received response<span
@@ -4194,6 +4379,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-dashboard-admin-performance-metrics">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-dashboard-admin-performance-metrics" hidden>
     <blockquote>Received response<span
@@ -4266,7 +4467,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="endpoints-PUTapi-admin-reports--id--status">PUT api/admin/reports/{id}/status</h2>
+                    <h2 id="endpoints-PUTapi-admin-reports--id--status">Update status laporan oleh admin.</h2>
 
 <p>
 </p>
@@ -4283,7 +4484,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"status_id\": \"consequatur\",
+    \"status\": \"ditolak\",
     \"notes\": \"consequatur\"
 }"
 </code></pre></div>
@@ -4300,7 +4501,7 @@ const headers = {
 };
 
 let body = {
-    "status_id": "consequatur",
+    "status": "ditolak",
     "notes": "consequatur"
 };
 
@@ -4397,15 +4598,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>status_id</code></b>&nbsp;&nbsp;
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="status_id"                data-endpoint="PUTapi-admin-reports--id--status"
-               value="consequatur"
+                              name="status"                data-endpoint="PUTapi-admin-reports--id--status"
+               value="ditolak"
                data-component="body">
     <br>
-<p>The <code>id</code> of an existing record in the statuses table. Example: <code>consequatur</code></p>
+<p>Example: <code>ditolak</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>baru</code></li> <li><code>menunggu</code></li> <li><code>sedang dikerjakan</code></li> <li><code>selesai</code></li> <li><code>ditolak</code></li></ul>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>notes</code></b>&nbsp;&nbsp;
@@ -4456,6 +4659,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-admin-categories">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-admin-categories" hidden>
     <blockquote>Received response<span
@@ -4547,9 +4766,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"name\": \"vmqeopfuudtdsufvyvddq\",
     \"description\": \"Dolores molestias ipsam sit.\",
-    \"icon\": \"hfqcoynlazghdtqtqxbaj\",
-    \"color\": \"wbpilp\",
-    \"is_active\": true
+    \"is_active\": false
 }"
 </code></pre></div>
 
@@ -4567,9 +4784,7 @@ const headers = {
 let body = {
     "name": "vmqeopfuudtdsufvyvddq",
     "description": "Dolores molestias ipsam sit.",
-    "icon": "hfqcoynlazghdtqtqxbaj",
-    "color": "wbpilp",
-    "is_active": true
+    "is_active": false
 };
 
 fetch(url, {
@@ -4675,28 +4890,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>Must not be greater than 500 characters. Example: <code>Dolores molestias ipsam sit.</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>icon</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
-                <input type="text" style="display: none"
-                              name="icon"                data-endpoint="POSTapi-admin-categories"
-               value="hfqcoynlazghdtqtqxbaj"
-               data-component="body">
-    <br>
-<p>Must not be greater than 100 characters. Example: <code>hfqcoynlazghdtqtqxbaj</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>color</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
-                <input type="text" style="display: none"
-                              name="color"                data-endpoint="POSTapi-admin-categories"
-               value="wbpilp"
-               data-component="body">
-    <br>
-<p>Must not be greater than 7 characters. Example: <code>wbpilp</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>is_active</code></b>&nbsp;&nbsp;
 <small>boolean</small>&nbsp;
 <i>optional</i> &nbsp;
@@ -4715,7 +4908,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>for hex color codes. Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
         </form>
 
@@ -4755,6 +4948,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-admin-categories-with-counts">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-admin-categories-with-counts" hidden>
     <blockquote>Received response<span
@@ -4863,6 +5072,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-admin-categories-statistics">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-admin-categories-statistics" hidden>
     <blockquote>Received response<span
@@ -4948,14 +5173,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/admin/categories/17" \
+    --get "http://localhost/api/admin/categories/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/categories/17"
+    "http://localhost/api/admin/categories/1"
 );
 
 const headers = {
@@ -4971,6 +5196,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-admin-categories--id-">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-admin-categories--id-" hidden>
     <blockquote>Received response<span
@@ -5048,10 +5289,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="GETapi-admin-categories--id-"
-               value="17"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the category. Example: <code>17</code></p>
+<p>The ID of the category. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -5068,13 +5309,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost/api/admin/categories/17" \
+    "http://localhost/api/admin/categories/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"description\": \"Dolores dolorum amet iste laborum eius est dolor.\",
-    \"icon\": \"dtdsufvyvddqamniihfqc\",
-    \"color\": \"oynlaz\",
     \"is_active\": false
 }"
 </code></pre></div>
@@ -5082,7 +5321,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/categories/17"
+    "http://localhost/api/admin/categories/1"
 );
 
 const headers = {
@@ -5092,8 +5331,6 @@ const headers = {
 
 let body = {
     "description": "Dolores dolorum amet iste laborum eius est dolor.",
-    "icon": "dtdsufvyvddqamniihfqc",
-    "color": "oynlaz",
     "is_active": false
 };
 
@@ -5183,10 +5420,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-admin-categories--id-"
-               value="17"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the category. Example: <code>17</code></p>
+<p>The ID of the category. Example: <code>1</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -5210,28 +5447,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
                data-component="body">
     <br>
 <p>Must not be greater than 500 characters. Example: <code>Dolores dolorum amet iste laborum eius est dolor.</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>icon</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
-                <input type="text" style="display: none"
-                              name="icon"                data-endpoint="PUTapi-admin-categories--id-"
-               value="dtdsufvyvddqamniihfqc"
-               data-component="body">
-    <br>
-<p>Must not be greater than 100 characters. Example: <code>dtdsufvyvddqamniihfqc</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>color</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
-                <input type="text" style="display: none"
-                              name="color"                data-endpoint="PUTapi-admin-categories--id-"
-               value="oynlaz"
-               data-component="body">
-    <br>
-<p>Must not be greater than 7 characters. Example: <code>oynlaz</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>is_active</code></b>&nbsp;&nbsp;
@@ -5269,14 +5484,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/admin/categories/17" \
+    "http://localhost/api/admin/categories/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/categories/17"
+    "http://localhost/api/admin/categories/1"
 );
 
 const headers = {
@@ -5369,10 +5584,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="DELETEapi-admin-categories--id-"
-               value="17"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the category. Example: <code>17</code></p>
+<p>The ID of the category. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -5389,14 +5604,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost/api/admin/categories/17/toggle-status" \
+    "http://localhost/api/admin/categories/1/toggle-status" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/categories/17/toggle-status"
+    "http://localhost/api/admin/categories/1/toggle-status"
 );
 
 const headers = {
@@ -5489,10 +5704,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="PUTapi-admin-categories--id--toggle-status"
-               value="17"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the category. Example: <code>17</code></p>
+<p>The ID of the category. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -5532,6 +5747,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-admin-ratings-report--reportId-">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-admin-ratings-report--reportId-" hidden>
     <blockquote>Received response<span
@@ -5652,6 +5883,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-admin-ratings-statistics">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-admin-ratings-statistics" hidden>
     <blockquote>Received response<span
@@ -5724,7 +5971,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="endpoints-GETapi-admin-pemeliharaan">Display a listing of the resource.</h2>
+                    <h2 id="endpoints-GETapi-admin-pemeliharaan">Menampilkan semua data pemeliharaan</h2>
 
 <p>
 </p>
@@ -5760,6 +6007,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-admin-pemeliharaan">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-admin-pemeliharaan" hidden>
     <blockquote>Received response<span
@@ -5832,7 +6095,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="endpoints-GETapi-admin-pemeliharaan-create">Show the form for creating a new resource.</h2>
+                    <h2 id="endpoints-GETapi-admin-pemeliharaan-create">Data untuk form create</h2>
 
 <p>
 </p>
@@ -5868,6 +6131,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-admin-pemeliharaan-create">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-admin-pemeliharaan-create" hidden>
     <blockquote>Received response<span
@@ -5940,7 +6219,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="endpoints-POSTapi-admin-pemeliharaan">Store a newly created resource in storage.</h2>
+                    <h2 id="endpoints-POSTapi-admin-pemeliharaan">Menyimpan data pemeliharaan baru</h2>
 
 <p>
 </p>
@@ -5959,7 +6238,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"laporan_id\": \"consequatur\",
     \"catatan\": \"consequatur\",
-    \"tanggal\": \"2025-06-27T12:03:52\",
+    \"tanggal\": \"2025-07-13T18:03:37\",
     \"email\": \"qkunze@example.com\",
     \"password\": \"O[2UZ5ij-e\\/dl4m{o,\"
 }"
@@ -5979,7 +6258,7 @@ const headers = {
 let body = {
     "laporan_id": "consequatur",
     "catatan": "consequatur",
-    "tanggal": "2025-06-27T12:03:52",
+    "tanggal": "2025-07-13T18:03:37",
     "email": "qkunze@example.com",
     "password": "O[2UZ5ij-e\/dl4m{o,"
 };
@@ -6092,10 +6371,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="tanggal"                data-endpoint="POSTapi-admin-pemeliharaan"
-               value="2025-06-27T12:03:52"
+               value="2025-07-13T18:03:37"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2025-06-27T12:03:52</code></p>
+<p>Must be a valid date. Example: <code>2025-07-13T18:03:37</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -6121,7 +6400,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="endpoints-GETapi-admin-pemeliharaan--pemeliharaan_id-">Display the specified resource.</h2>
+                    <h2 id="endpoints-GETapi-admin-pemeliharaan--pemeliharaan_id-">Menampilkan detail satu pemeliharaan</h2>
 
 <p>
 </p>
@@ -6157,6 +6436,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-admin-pemeliharaan--pemeliharaan_id-">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-admin-pemeliharaan--pemeliharaan_id-" hidden>
     <blockquote>Received response<span
@@ -6241,7 +6536,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="endpoints-GETapi-admin-pemeliharaan--pemeliharaan_id--edit">Show the form for editing the specified resource.</h2>
+                    <h2 id="endpoints-GETapi-admin-pemeliharaan--pemeliharaan_id--edit">Data untuk form edit</h2>
 
 <p>
 </p>
@@ -6277,6 +6572,22 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-admin-pemeliharaan--pemeliharaan_id--edit">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-admin-pemeliharaan--pemeliharaan_id--edit" hidden>
     <blockquote>Received response<span
@@ -6361,7 +6672,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="endpoints-PUTapi-admin-pemeliharaan--pemeliharaan_id-">Update the specified resource in storage.</h2>
+                    <h2 id="endpoints-PUTapi-admin-pemeliharaan--pemeliharaan_id-">Update data pemeliharaan</h2>
 
 <p>
 </p>
@@ -6380,7 +6691,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"laporan_id\": \"consequatur\",
     \"catatan\": \"consequatur\",
-    \"tanggal\": \"2025-06-27T12:03:52\",
+    \"tanggal\": \"2025-07-13T18:03:37\",
     \"email\": \"qkunze@example.com\",
     \"password\": \"O[2UZ5ij-e\\/dl4m{o,\"
 }"
@@ -6400,7 +6711,7 @@ const headers = {
 let body = {
     "laporan_id": "consequatur",
     "catatan": "consequatur",
-    "tanggal": "2025-06-27T12:03:52",
+    "tanggal": "2025-07-13T18:03:37",
     "email": "qkunze@example.com",
     "password": "O[2UZ5ij-e\/dl4m{o,"
 };
@@ -6525,10 +6836,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="tanggal"                data-endpoint="PUTapi-admin-pemeliharaan--pemeliharaan_id-"
-               value="2025-06-27T12:03:52"
+               value="2025-07-13T18:03:37"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2025-06-27T12:03:52</code></p>
+<p>Must be a valid date. Example: <code>2025-07-13T18:03:37</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -6554,7 +6865,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="endpoints-DELETEapi-admin-pemeliharaan--pemeliharaan_id-">Remove the specified resource from storage.</h2>
+                    <h2 id="endpoints-DELETEapi-admin-pemeliharaan--pemeliharaan_id-">Hapus data pemeliharaan</h2>
 
 <p>
 </p>

@@ -12,11 +12,10 @@ class Category extends Model
 
     protected $fillable = [
         'name',
-        'slug',
         'description',
-        'icon',
-        'color',
         'is_active',
+        'created_by', // ➕ tambahkan ini
+        'updated_by',
     ];
 
     protected $casts = [

@@ -10,6 +10,7 @@ use App\Models\Rating;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
 
 class DashboardController extends Controller
@@ -194,46 +195,47 @@ class DashboardController extends Controller
     /**
      * Get user dashboard (for regular users)
      */
-    public function userStats()
-    {
-        $user = Auth::user();
+   public function userStats()
+{
+    $user = Auth::user();
 
-        // Statistik laporan berdasarkan user
-        $stats = [
-            'total_reports' => Report::where('user_id', $user->id)->count(),
-            'pending_reports' => Report::where('user_id', $user->id)->where('status', 'pending')->count(),
-            'completed_reports' => Report::where('user_id', $user->id)->where('status', 'completed')->count(),
-            'in_progress_reports' => Report::where('user_id', $user->id)->where('status', 'in_progress')->count(),
-        ];
+    $stats = [
+        'total_reports' => Report::where('id_user', $user->id_user)->count(),
+        'pending_reports' => Report::where('id_user', $user->id_user)->where('status', 'baru')->count(),
+        'completed_reports' => Report::where('id_user', $user->id_user)->where('status', 'selesai')->count(),
+        'in_progress_reports' => Report::where('id_user', $user->id_user)->whereIn('status', ['diverifikasi', 'diproses'])->count(),
+    ];
 
-        // Data pemeliharaan yang dibuat admin, ditampilkan untuk semua user
-        $pemeliharaan = \App\Models\Pemeliharaan::with('laporan')
-            ->latest()
-            ->get()
-            ->map(function ($item) {
-                return [
-                    'id' => $item->id,
-                    'nama_fasilitas' => $item->nama_fasilitas,
-                    'deskripsi' => $item->deskripsi,
-                    'tgl_pemeliharaan' => $item->tgl_pemeliharaan,
-                    'catatan' => $item->catatan,
-                    'foto' => $item->foto ?? null, // Tambahkan jika kamu punya kolom foto
-                    'laporan_judul' => $item->laporan->title ?? null,
-                ];
-            });
+    $pemeliharaan = \App\Models\Pemeliharaan::with('laporan')
+        ->latest()
+        ->get()
+        ->map(function ($item) {
+            return [
+                'id' => $item->id,
+                'nama_fasilitas' => $item->nama_fasilitas,
+                'deskripsi' => $item->deskripsi,
+                'tgl_pemeliharaan' => $item->tgl_pemeliharaan,
+                'catatan' => $item->catatan,
+                'foto' => $item->foto ?? null,
+                'laporan_judul' => $item->laporan->title ?? null,
+            ];
+        });
 
-        return response()->json([
-            'success' => true,
-            'data' => [
-                'user' => [
-                    'nama' => $user->nama,
-                    'photo' => $user->photo ?? null, // pastikan kolom ini tersedia di tabel users
-                ],
-                'stats' => $stats,
-                'pemeliharaan' => $pemeliharaan
-            ]
-        ]);
-    }
+    return response()->json([
+        'success' => true,
+        'data' => [
+            'user' => [
+                'nama' => $user->nama,
+                'photo' => $user->photo ?? null,
+            ],
+            'stats' => $stats,
+            'pemeliharaan' => $pemeliharaan,
+        ],
+    ]);
+}
+
+
+
 
 
 
@@ -242,7 +244,7 @@ class DashboardController extends Controller
      */
     public function userRecentReports()
     {
-        $recentReports = Report::where('user_id', Auth::id())
+        $recentReports = Report::where('id_user', Auth::id())
             ->with('category:id,name')
             ->latest()
             ->limit(5)

@@ -16,7 +16,7 @@ class NotificationController extends Controller
     public function index(Request $request)
     {
         $perPage = $request->get('per_page', 15);
-        $notifications = Notification::where('user_id', Auth::id())
+        $notifications = Notification::where('id_user', Auth::id())
                                    ->orderBy('created_at', 'desc')
                                    ->paginate($perPage);
 
@@ -31,7 +31,7 @@ class NotificationController extends Controller
      */
     public function unreadCount()
     {
-        $count = Notification::where('user_id', Auth::id())
+        $count = Notification::where('id_user', Auth::id())
                            ->where('is_read', false)
                            ->count();
 
@@ -47,7 +47,7 @@ class NotificationController extends Controller
     public function markAsRead($id)
     {
         $notification = Notification::where('id', $id)
-                                  ->where('user_id', Auth::id())
+                                  ->where('id_user', Auth::id())
                                   ->first();
 
         if (!$notification) {
@@ -70,7 +70,7 @@ class NotificationController extends Controller
      */
     public function markAllAsRead()
     {
-        Notification::where('user_id', Auth::id())
+        Notification::where('id_user', Auth::id())
                    ->where('is_read', false)
                    ->update(['is_read' => true]);
 
@@ -86,7 +86,7 @@ class NotificationController extends Controller
     public function destroy($id)
     {
         $notification = Notification::where('id', $id)
-                                  ->where('user_id', Auth::id())
+                                  ->where('id_user', Auth::id())
                                   ->first();
 
         if (!$notification) {
@@ -110,7 +110,7 @@ class NotificationController extends Controller
     public static function sendNotification($userId, $title, $message, $type = 'info', $data = null)
     {
         return Notification::create([
-            'user_id' => $userId,
+            'id_user' => $userId,
             'title' => $title,
             'message' => $message,
             'type' => $type,

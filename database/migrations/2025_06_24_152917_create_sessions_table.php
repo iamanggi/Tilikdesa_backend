@@ -11,8 +11,8 @@ return new class extends Migration {
             $table->string('id')->primary();
 
             // Ganti foreignId() karena users menggunakan id_user, bukan id
-            $table->unsignedBigInteger('user_id')->nullable()->index();
-            $table->foreign('user_id')->references('id_user')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('id_user')->nullable()->index();
+            $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
 
             $table->string('ip_address', 45)->nullable();
             $table->text('user_agent')->nullable();

@@ -15,8 +15,8 @@ return new class extends Migration
             $table->foreignId('report_id')->constrained()->onDelete('cascade');
 
             // Foreign key ke users.id_user (perlu ditulis manual)
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id_user')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('id_user');
+            $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
 
             $table->integer('rating'); // 1-5
             $table->text('comment')->nullable();

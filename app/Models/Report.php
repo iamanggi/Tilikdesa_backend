@@ -11,16 +11,13 @@ class Report extends Model
     use HasFactory;
 
     protected $fillable = [
-        'report_number',
-        'user_id',
+        'id_user',
         'category_id',
         'title',
         'description',
         'latitude',
         'longitude',
         'address',
-        'village',
-        'district',
         'photos',
         'status',
         'admin_notes',
@@ -28,7 +25,6 @@ class Report extends Model
         'processed_at',
         'completed_at',
         'is_verified',
-        'is_urgent',
     ];
 
     protected $casts = [
@@ -37,7 +33,6 @@ class Report extends Model
         'processed_at' => 'datetime',
         'completed_at' => 'datetime',
         'is_verified' => 'boolean',
-        'is_urgent' => 'boolean',
         'latitude' => 'decimal:8',
         'longitude' => 'decimal:8',
     ];
@@ -45,7 +40,7 @@ class Report extends Model
     // Relationships
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class , 'id_user');
     }
 
     public function category()
@@ -74,24 +69,10 @@ class Report extends Model
         return $query->where('status', $status);
     }
 
-    public function scopeByVillage($query, $village)
-    {
-        return $query->where('village', $village);
-    }
-
-    public function scopeByDistrict($query, $district)
-    {
-        return $query->where('district', $district);
-    }
 
     public function scopeVerified($query)
     {
         return $query->where('is_verified', true);
-    }
-
-    public function scopeUrgent($query)
-    {
-        return $query->where('is_urgent', true);
     }
 
     // Boot method for auto-generating report number
@@ -100,12 +81,6 @@ class Report extends Model
         parent::boot();
 
         static::creating(function ($report) {
-            $report->report_number = 'TLK-' . date('Ymd') . '-' . str_pad(
-                static::whereDate('created_at', today())->count() + 1,
-                4,
-                '0',
-                STR_PAD_LEFT
-            );
         });
     }
 

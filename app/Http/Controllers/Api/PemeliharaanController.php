@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Requests\StorePemeliharaanRequest;
 use App\Models\Pemeliharaan;
 use App\Models\Lokasi;
-use App\Models\Report;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class PemeliharaanController extends BaseController
 {
@@ -17,46 +18,77 @@ class PemeliharaanController extends BaseController
         $this->middleware(['auth:sanctum', 'admin']);
     }
 
-    /**
-     * Menampilkan semua data pemeliharaan
-     */
     public function index(): JsonResponse
     {
-        $pemeliharaans = Pemeliharaan::with(['lokasi', 'laporan'])->latest()->get();
+        try {
+            $pemeliharaans = Pemeliharaan::latest()->get();
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Data pemeliharaan berhasil diambil',
-            'data' => $pemeliharaans,
-        ]);
+            return response()->json([
+                'success' => true,
+                'message' => 'Data pemeliharaan berhasil diambil',
+                'data' => $pemeliharaans,
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Error fetching pemeliharaan: ' . $e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal mengambil data pemeliharaan',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
 
-    /**
-     * Data untuk form create
-     */
     public function create(): JsonResponse
     {
-        $lokasis = Lokasi::all();
-        $laporans = Report::all();
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Data untuk form create berhasil diambil',
-            'data' => compact('lokasis', 'laporans'),
-        ]);
+        try {
+            return response()->json([
+                'success' => true,
+                'message' => 'Form create tersedia',
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Error fetching create form data: ' . $e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal mengambil data form',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
 
-    /**
-     * Menyimpan data pemeliharaan baru
-     */
-    public function store(StorePemeliharaanRequest $request): JsonResponse
+    public function store(Request $request): JsonResponse
     {
         try {
-            $data = $request->validated();
+            $validator = Validator::make($request->all(), [
+                'judul' => 'required|string|max:255',
+                'deskripsi' => 'required|string',
+                'nama_fasilitas' => 'required|string|max:255',
+                'tgl_pemeliharaan' => 'required|date',
+                'status' => 'required|in:pending,progress,completed',
+                'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Validasi gagal',
+                    'errors' => $validator->errors(),
+                ], 422);
+            }
+
+            $data = $validator->validated();
 
             if ($request->hasFile('foto')) {
                 $foto = $request->file('foto');
-                $data['foto'] = $foto->store('pemeliharaan_foto', 'public');
+
+                if (!$foto->isValid()) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'File foto tidak valid',
+                    ], 422);
+                }
+
+                $filename = time() . '_' . $foto->getClientOriginalName();
+                $data['foto'] = $foto->storeAs('pemeliharaan_foto', $filename, 'public');
             }
 
             $pemeliharaan = Pemeliharaan::create($data);
@@ -64,9 +96,10 @@ class PemeliharaanController extends BaseController
             return response()->json([
                 'success' => true,
                 'message' => 'Data pemeliharaan berhasil ditambahkan',
-                'data' => $pemeliharaan->load(['lokasi', 'laporan']),
+                'data' => $pemeliharaan,
             ], 201);
-        } catch (\Throwable $e) {
+        } catch (\Exception $e) {
+            Log::error('Error creating pemeliharaan: ' . $e->getMessage());
             return response()->json([
                 'success' => false,
                 'message' => 'Gagal menambahkan data pemeliharaan',
@@ -75,52 +108,72 @@ class PemeliharaanController extends BaseController
         }
     }
 
-    /**
-     * Menampilkan detail satu pemeliharaan
-     */
     public function show(Pemeliharaan $pemeliharaan): JsonResponse
     {
-        return response()->json([
-            'success' => true,
-            'message' => 'Detail pemeliharaan berhasil diambil',
-            'data' => $pemeliharaan->load(['lokasi', 'laporan']),
-        ]);
+        try {
+            return response()->json([
+                'success' => true,
+                'message' => 'Detail pemeliharaan berhasil diambil',
+                'data' => $pemeliharaan,
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Error showing pemeliharaan: ' . $e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal mengambil detail pemeliharaan',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
 
-    /**
-     * Data untuk form edit
-     */
     public function edit(Pemeliharaan $pemeliharaan): JsonResponse
     {
-        $lokasis = Lokasi::all();
-        $laporans = Report::all();
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Data untuk form edit berhasil diambil',
-            'data' => [
-                'pemeliharaan' => $pemeliharaan->load(['lokasi', 'laporan']),
-                'lokasis' => $lokasis,
-                'laporans' => $laporans,
-            ],
-        ]);
+        try {
+            return response()->json([
+                'success' => true,
+                'message' => 'Data untuk form edit berhasil diambil',
+                'data' => $pemeliharaan,
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Error fetching edit form data: ' . $e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal mengambil data form edit',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
 
-    /**
-     * Update data pemeliharaan
-     */
-    public function update(StorePemeliharaanRequest $request, Pemeliharaan $pemeliharaan): JsonResponse
+    public function update(Request $request, Pemeliharaan $pemeliharaan): JsonResponse
     {
         try {
-            $data = $request->validated();
+            $validator = Validator::make($request->all(), [
+                'judul' => 'required|string|max:255',
+                'deskripsi' => 'required|string',
+                'nama_fasilitas' => 'required|string|max:255',
+                'tgl_pemeliharaan' => 'required|date',
+                'status' => 'required|in:pending,progress,completed',
+                'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Validasi gagal',
+                    'errors' => $validator->errors(),
+                ], 422);
+            }
+
+            $data = $validator->validated();
 
             if ($request->hasFile('foto')) {
-                // Hapus foto lama jika ada
                 if ($pemeliharaan->foto && Storage::disk('public')->exists($pemeliharaan->foto)) {
                     Storage::disk('public')->delete($pemeliharaan->foto);
                 }
 
-                $data['foto'] = $request->file('foto')->store('pemeliharaan_foto', 'public');
+                $foto = $request->file('foto');
+                $filename = time() . '_' . $foto->getClientOriginalName();
+                $data['foto'] = $foto->storeAs('pemeliharaan_foto', $filename, 'public');
             }
 
             $pemeliharaan->update($data);
@@ -128,9 +181,10 @@ class PemeliharaanController extends BaseController
             return response()->json([
                 'success' => true,
                 'message' => 'Data pemeliharaan berhasil diperbarui',
-                'data' => $pemeliharaan->load(['lokasi', 'laporan']),
+                'data' => $pemeliharaan,
             ]);
-        } catch (\Throwable $e) {
+        } catch (\Exception $e) {
+            Log::error('Error updating pemeliharaan: ' . $e->getMessage());
             return response()->json([
                 'success' => false,
                 'message' => 'Gagal memperbarui data pemeliharaan',
@@ -139,13 +193,9 @@ class PemeliharaanController extends BaseController
         }
     }
 
-    /**
-     * Hapus data pemeliharaan
-     */
     public function destroy(Pemeliharaan $pemeliharaan): JsonResponse
     {
         try {
-            // Hapus file foto dari storage jika ada
             if ($pemeliharaan->foto && Storage::disk('public')->exists($pemeliharaan->foto)) {
                 Storage::disk('public')->delete($pemeliharaan->foto);
             }
@@ -156,7 +206,8 @@ class PemeliharaanController extends BaseController
                 'success' => true,
                 'message' => 'Data pemeliharaan berhasil dihapus',
             ]);
-        } catch (\Throwable $e) {
+        } catch (\Exception $e) {
+            Log::error('Error deleting pemeliharaan: ' . $e->getMessage());
             return response()->json([
                 'success' => false,
                 'message' => 'Gagal menghapus data pemeliharaan',

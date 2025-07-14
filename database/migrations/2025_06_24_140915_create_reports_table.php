@@ -12,8 +12,9 @@ return new class extends Migration
             $table->id();
 
             // Foreign key ke users.id_user
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id_user')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('id_user');
+            $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
+
 
             // Foreign key ke category_id
             $table->foreignId('category_id')->constrained()->onDelete('cascade');

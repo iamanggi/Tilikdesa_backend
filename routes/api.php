@@ -39,7 +39,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // Authentication routes
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/profile', [AuthController::class, 'profile']);
-    Route::put('/profile', [AuthController::class, 'updateProfile']);
+    Route::post('/profile', [AuthController::class, 'updateProfile']);
     Route::post('/change-password', [AuthController::class, 'changePassword']);
     
     // Dashboard routes
@@ -95,7 +95,7 @@ Route::middleware('auth:sanctum')->group(function () {
         
         // Admin report management
         Route::prefix('admin/reports')->group(function () {
-            Route::get('/', [ReportController::class, 'adminIndex']);
+            // Route::get('/', [ReportController::class, 'adminIndex']);
             Route::put('/{id}/status', [ReportController::class, 'updateStatus']);
             Route::put('/{id}/verify', [ReportController::class, 'verifyReport']);
             Route::put('/{id}/reject', [ReportController::class, 'rejectReport']);
@@ -146,6 +146,7 @@ Route::middleware(['auth:sanctum', 'admin'])->prefix('admin/pemeliharaan')->grou
     Route::put('/{pemeliharaan}', [PemeliharaanController::class, 'update']);
     Route::delete('/{pemeliharaan}', [PemeliharaanController::class, 'destroy']);
 });
+
 
 
 // Fallback for undefined routes

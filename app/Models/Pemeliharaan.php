@@ -15,8 +15,6 @@ class Pemeliharaan extends Model
         'deskripsi',
         'id_lokasi',
         'tgl_pemeliharaan',
-        'laporan_id',
-        'catatan',
     ];
 
     public function laporan()

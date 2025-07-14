@@ -313,7 +313,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"success":true,"data":[]}'
+        content: '{"success":true,"data":[{"id":1,"name":"jalan rusak","description":"jalan rusak","is_active":true,"created_by":2,"updated_by":null,"created_at":"2025-07-09T09:08:52.000000Z","updated_at":"2025-07-09T09:08:52.000000Z"}]}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -352,7 +352,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"success":true,"data":[]}'
+        content: '{"success":true,"data":[{"id":1,"name":"jalan rusak","description":"jalan rusak","is_active":true,"created_by":2,"updated_by":null,"created_at":"2025-07-09T09:08:52.000000Z","updated_at":"2025-07-09T09:08:52.000000Z"}]}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -374,9 +374,9 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
+      title: 'Logout the authenticated user.'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -465,30 +465,58 @@ endpoints:
         exampleWasSpecified: false
         nullable: false
         custom: []
-      bahasa:
-        name: bahasa
-        description: ''
-        required: true
-        example: id
-        type: string
-        enumValues:
-          - id
-          - en
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      password:
-        name: password
-        description: 'Must be at least 6 characters.'
+      phone:
+        name: phone
+        description: 'Must not be greater than 15 characters.'
         required: false
-        example: OP>@;4
+        example: amniihfqcoynl
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         custom: []
-      foto_profil:
-        name: foto_profil
+      address:
+        name: address
+        description: ''
+        required: false
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      village:
+        name: village
+        description: ''
+        required: false
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      sub_district:
+        name: sub_district
+        description: ''
+        required: false
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      password:
+        name: password
+        description: 'Must be at least 6 characters.'
+        required: false
+        example: '[2UZ5ij-e/dl4'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      photo:
+        name: photo
         description: 'Must be an image. Must not be greater than 2048 kilobytes.'
         required: false
         example: null
@@ -499,10 +527,13 @@ endpoints:
         custom: []
     cleanBodyParameters:
       nama: vmqeopfuudtdsufvyvddq
-      bahasa: id
-      password: OP>@;4
+      phone: amniihfqcoynl
+      address: consequatur
+      village: consequatur
+      sub_district: consequatur
+      password: '[2UZ5ij-e/dl4'
     fileParameters:
-      foto_profil: null
+      photo: null
     responses: []
     responseFields: []
     auth: []
@@ -649,8 +680,10 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
+      title: 'Menampilkan daftar laporan.'
+      description: |-
+        - Admin: lihat semua laporan
+        - Masyarakat: lihat laporan miliknya
       authenticated: false
       custom: []
     headers:
@@ -688,7 +721,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
+      title: 'Simpan laporan baru.'
       description: ''
       authenticated: false
       custom: []
@@ -730,16 +763,6 @@ endpoints:
         exampleWasSpecified: false
         nullable: false
         custom: []
-      location_id:
-        name: location_id
-        description: 'The <code>id</code> of an existing record in the locations table.'
-        required: true
-        example: consequatur
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
       photo:
         name: photo
         description: 'Must be an image. Must not be greater than 2048 kilobytes.'
@@ -750,11 +773,43 @@ endpoints:
         exampleWasSpecified: false
         nullable: false
         custom: []
+      latitude:
+        name: latitude
+        description: ''
+        required: true
+        example: 11613.31890586
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      longitude:
+        name: longitude
+        description: ''
+        required: true
+        example: 11613.31890586
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      address:
+        name: address
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: opfuudtdsufvyvddqamni
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
     cleanBodyParameters:
       category_id: consequatur
       title: mqeopfuudtdsufvyvddqa
       description: 'Molestias ipsam sit veniam sed fuga aspernatur.'
-      location_id: consequatur
+      latitude: 11613.31890586
+      longitude: 11613.31890586
+      address: opfuudtdsufvyvddqamni
     fileParameters:
       photo: null
     responses: []
@@ -773,7 +828,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
+      title: 'Menampilkan detail laporan berdasarkan ID.'
       description: ''
       authenticated: false
       custom: []
@@ -823,7 +878,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
+      title: 'Hapus laporan.'
       description: ''
       authenticated: false
       custom: []
@@ -1235,7 +1290,16 @@ endpoints:
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -1265,7 +1329,16 @@ endpoints:
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -1295,7 +1368,16 @@ endpoints:
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -1325,7 +1407,16 @@ endpoints:
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -1355,7 +1446,16 @@ endpoints:
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -1385,7 +1485,16 @@ endpoints:
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -1415,7 +1524,16 @@ endpoints:
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -1431,7 +1549,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
+      title: 'Update status laporan oleh admin.'
       description: ''
       authenticated: false
       custom: []
@@ -1454,13 +1572,18 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      status_id:
-        name: status_id
-        description: 'The <code>id</code> of an existing record in the statuses table.'
+      status:
+        name: status
+        description: ''
         required: true
-        example: consequatur
+        example: ditolak
         type: string
-        enumValues: []
+        enumValues:
+          - baru
+          - menunggu
+          - 'sedang dikerjakan'
+          - selesai
+          - ditolak
         exampleWasSpecified: false
         nullable: false
         custom: []
@@ -1475,7 +1598,7 @@ endpoints:
         nullable: true
         custom: []
     cleanBodyParameters:
-      status_id: consequatur
+      status: ditolak
       notes: consequatur
     fileParameters: []
     responses: []
@@ -1508,7 +1631,16 @@ endpoints:
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -1556,42 +1688,20 @@ endpoints:
         exampleWasSpecified: false
         nullable: true
         custom: []
-      icon:
-        name: icon
-        description: 'Must not be greater than 100 characters.'
-        required: false
-        example: hfqcoynlazghdtqtqxbaj
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        custom: []
-      color:
-        name: color
-        description: 'Must not be greater than 7 characters.'
-        required: false
-        example: wbpilp
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        custom: []
       is_active:
         name: is_active
-        description: 'for hex color codes.'
+        description: ''
         required: false
-        example: true
+        example: false
         type: boolean
         enumValues: []
         exampleWasSpecified: false
-        nullable: false
+        nullable: true
         custom: []
     cleanBodyParameters:
       name: vmqeopfuudtdsufvyvddq
       description: 'Dolores molestias ipsam sit.'
-      icon: hfqcoynlazghdtqtqxbaj
-      color: wbpilp
-      is_active: true
+      is_active: false
     fileParameters: []
     responses: []
     responseFields: []
@@ -1623,7 +1733,16 @@ endpoints:
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -1653,7 +1772,16 @@ endpoints:
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -1681,20 +1809,29 @@ endpoints:
         name: id
         description: 'The ID of the category.'
         required: true
-        example: 17
+        example: 1
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 17
+      id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -1722,14 +1859,14 @@ endpoints:
         name: id
         description: 'The ID of the category.'
         required: true
-        example: 17
+        example: 1
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 17
+      id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -1753,26 +1890,6 @@ endpoints:
         exampleWasSpecified: false
         nullable: true
         custom: []
-      icon:
-        name: icon
-        description: 'Must not be greater than 100 characters.'
-        required: false
-        example: dtdsufvyvddqamniihfqc
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        custom: []
-      color:
-        name: color
-        description: 'Must not be greater than 7 characters.'
-        required: false
-        example: oynlaz
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        custom: []
       is_active:
         name: is_active
         description: ''
@@ -1781,12 +1898,10 @@ endpoints:
         type: boolean
         enumValues: []
         exampleWasSpecified: false
-        nullable: false
+        nullable: true
         custom: []
     cleanBodyParameters:
       description: 'Dolores dolorum amet iste laborum eius est dolor.'
-      icon: dtdsufvyvddqamniihfqc
-      color: oynlaz
       is_active: false
     fileParameters: []
     responses: []
@@ -1817,14 +1932,14 @@ endpoints:
         name: id
         description: 'The ID of the category.'
         required: true
-        example: 17
+        example: 1
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 17
+      id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1858,14 +1973,14 @@ endpoints:
         name: id
         description: 'The ID of the category.'
         required: true
-        example: 17
+        example: 1
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 17
+      id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1912,7 +2027,16 @@ endpoints:
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -1942,7 +2066,16 @@ endpoints:
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -1958,7 +2091,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Display a listing of the resource.'
+      title: 'Menampilkan semua data pemeliharaan'
       description: ''
       authenticated: false
       custom: []
@@ -1972,7 +2105,16 @@ endpoints:
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -1988,7 +2130,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Show the form for creating a new resource.'
+      title: 'Data untuk form create'
       description: ''
       authenticated: false
       custom: []
@@ -2002,7 +2144,16 @@ endpoints:
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -2018,7 +2169,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Store a newly created resource in storage.'
+      title: 'Menyimpan data pemeliharaan baru'
       description: ''
       authenticated: false
       custom: []
@@ -2054,7 +2205,7 @@ endpoints:
         name: tanggal
         description: 'Must be a valid date.'
         required: true
-        example: '2025-06-27T12:03:52'
+        example: '2025-07-13T18:03:37'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -2083,7 +2234,7 @@ endpoints:
     cleanBodyParameters:
       laporan_id: consequatur
       catatan: consequatur
-      tanggal: '2025-06-27T12:03:52'
+      tanggal: '2025-07-13T18:03:37'
       email: qkunze@example.com
       password: 'O[2UZ5ij-e/dl4m{o,'
     fileParameters: []
@@ -2103,7 +2254,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Display the specified resource.'
+      title: 'Menampilkan detail satu pemeliharaan'
       description: ''
       authenticated: false
       custom: []
@@ -2128,7 +2279,16 @@ endpoints:
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -2144,7 +2304,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Show the form for editing the specified resource.'
+      title: 'Data untuk form edit'
       description: ''
       authenticated: false
       custom: []
@@ -2169,7 +2329,16 @@ endpoints:
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -2185,7 +2354,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Update the specified resource in storage.'
+      title: 'Update data pemeliharaan'
       description: ''
       authenticated: false
       custom: []
@@ -2232,7 +2401,7 @@ endpoints:
         name: tanggal
         description: 'Must be a valid date.'
         required: true
-        example: '2025-06-27T12:03:52'
+        example: '2025-07-13T18:03:37'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -2261,7 +2430,7 @@ endpoints:
     cleanBodyParameters:
       laporan_id: consequatur
       catatan: consequatur
-      tanggal: '2025-06-27T12:03:52'
+      tanggal: '2025-07-13T18:03:37'
       email: qkunze@example.com
       password: 'O[2UZ5ij-e/dl4m{o,'
     fileParameters: []
@@ -2281,7 +2450,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Remove the specified resource from storage.'
+      title: 'Hapus data pemeliharaan'
       description: ''
       authenticated: false
       custom: []

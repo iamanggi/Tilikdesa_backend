@@ -15,7 +15,7 @@ class NotificationService
     {
         try {
             return Notification::create([
-                'user_id' => $userId,
+                'id_user' => $userId,
                 'title' => $title,
                 'message' => $message,
                 'type' => $type,

@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Schema;
 
 class CategoryController extends Controller
 {
@@ -51,8 +52,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        // Check if user is authenticated
+        if (!Auth::check()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'User not authenticated'
+            ], 401);
+        }
+
         // Check if user is admin
-        if (!Auth::user() || Auth::user()->role !== 'admin') {
+        if (Auth::user()->role !== 'admin') {
             return response()->json([
                 'success' => false,
                 'message' => 'Unauthorized access'
@@ -62,9 +71,7 @@ class CategoryController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255|unique:categories,name',
             'description' => 'nullable|string|max:500',
-            'icon' => 'nullable|string|max:100',
-            'color' => 'nullable|string|max:7', // for hex color codes
-            'is_active' => 'boolean'
+            'is_active' => 'nullable|boolean'
         ]);
 
         if ($validator->fails()) {
@@ -76,14 +83,18 @@ class CategoryController extends Controller
         }
 
         try {
-            $category = Category::create([
+            $categoryData = [
                 'name' => $request->name,
                 'description' => $request->description,
-                'icon' => $request->icon,
-                'color' => $request->color,
-                'is_active' => $request->is_active ?? true,
-                'created_by' => Auth::id()
-            ]);
+                'is_active' => $request->has('is_active') ? $request->is_active : true,
+            ];
+
+            // Only add created_by if the column exists in the table
+            if (Schema::hasColumn('categories', 'created_by')) {
+                $categoryData['created_by'] = Auth::id();
+            }
+
+            $category = Category::create($categoryData);
 
             return response()->json([
                 'success' => true,
@@ -94,7 +105,8 @@ class CategoryController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Failed to create category'
+                'message' => 'Failed to create category',
+                'error' => $e->getMessage()
             ], 500);
         }
     }
@@ -124,8 +136,16 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // Check if user is authenticated
+        if (!Auth::check()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'User not authenticated'
+            ], 401);
+        }
+
         // Check if user is admin
-        if (!Auth::user() || Auth::user()->role !== 'admin') {
+        if (Auth::user()->role !== 'admin') {
             return response()->json([
                 'success' => false,
                 'message' => 'Unauthorized access'
@@ -144,9 +164,7 @@ class CategoryController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255|unique:categories,name,' . $id,
             'description' => 'nullable|string|max:500',
-            'icon' => 'nullable|string|max:100',
-            'color' => 'nullable|string|max:7',
-            'is_active' => 'boolean'
+            'is_active' => 'nullable|boolean'
         ]);
 
         if ($validator->fails()) {
@@ -158,14 +176,18 @@ class CategoryController extends Controller
         }
 
         try {
-            $category->update([
+            $updateData = [
                 'name' => $request->name,
                 'description' => $request->description,
-                'icon' => $request->icon,
-                'color' => $request->color,
-                'is_active' => $request->is_active ?? $category->is_active,
-                'updated_by' => Auth::id()
-            ]);
+                'is_active' => $request->has('is_active') ? $request->is_active : $category->is_active,
+            ];
+
+            // Only add updated_by if the column exists in the table
+            if (Schema::hasColumn('categories', 'updated_by')) {
+                $updateData['updated_by'] = Auth::id();
+            }
+
+            $category->update($updateData);
 
             return response()->json([
                 'success' => true,
@@ -176,7 +198,8 @@ class CategoryController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Failed to update category'
+                'message' => 'Failed to update category',
+                'error' => $e->getMessage()
             ], 500);
         }
     }
@@ -186,8 +209,16 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
+        // Check if user is authenticated
+        if (!Auth::check()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'User not authenticated'
+            ], 401);
+        }
+
         // Check if user is admin
-        if (!Auth::user() || Auth::user()->role !== 'admin') {
+        if (Auth::user()->role !== 'admin') {
             return response()->json([
                 'success' => false,
                 'message' => 'Unauthorized access'
@@ -204,13 +235,15 @@ class CategoryController extends Controller
         }
 
         // Check if category is being used by any reports
-        $reportsCount = $category->reports()->count();
-        
-        if ($reportsCount > 0) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Cannot delete category. It is being used by ' . $reportsCount . ' report(s)'
-            ], 400);
+        if (method_exists($category, 'reports')) {
+            $reportsCount = $category->reports()->count();
+            
+            if ($reportsCount > 0) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Cannot delete category. It is being used by ' . $reportsCount . ' report(s)'
+                ], 400);
+            }
         }
 
         try {
@@ -224,7 +257,8 @@ class CategoryController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Failed to delete category'
+                'message' => 'Failed to delete category',
+                'error' => $e->getMessage(),
             ], 500);
         }
     }
@@ -234,8 +268,16 @@ class CategoryController extends Controller
      */
     public function toggleStatus($id)
     {
+        // Check if user is authenticated
+        if (!Auth::check()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'User not authenticated'
+            ], 401);
+        }
+
         // Check if user is admin
-        if (!Auth::user() || Auth::user()->role !== 'admin') {
+        if (Auth::user()->role !== 'admin') {
             return response()->json([
                 'success' => false,
                 'message' => 'Unauthorized access'
@@ -252,10 +294,16 @@ class CategoryController extends Controller
         }
 
         try {
-            $category->update([
+            $updateData = [
                 'is_active' => !$category->is_active,
-                'updated_by' => Auth::id()
-            ]);
+            ];
+
+            // Only add updated_by if the column exists in the table
+            if (Schema::hasColumn('categories', 'updated_by')) {
+                $updateData['updated_by'] = Auth::id();
+            }
+
+            $category->update($updateData);
 
             $status = $category->is_active ? 'activated' : 'deactivated';
 
@@ -268,7 +316,8 @@ class CategoryController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Failed to toggle category status'
+                'message' => 'Failed to toggle category status',
+                'error' => $e->getMessage()
             ], 500);
         }
     }
@@ -278,8 +327,16 @@ class CategoryController extends Controller
      */
     public function withReportCounts()
     {
+        // Check if user is authenticated
+        if (!Auth::check()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'User not authenticated'
+            ], 401);
+        }
+
         // Check if user is admin
-        if (!Auth::user() || Auth::user()->role !== 'admin') {
+        if (Auth::user()->role !== 'admin') {
             return response()->json([
                 'success' => false,
                 'message' => 'Unauthorized access'
@@ -326,8 +383,16 @@ class CategoryController extends Controller
      */
     public function statistics()
     {
+        // Check if user is authenticated
+        if (!Auth::check()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'User not authenticated'
+            ], 401);
+        }
+
         // Check if user is admin
-        if (!Auth::user() || Auth::user()->role !== 'admin') {
+        if (Auth::user()->role !== 'admin') {
             return response()->json([
                 'success' => false,
                 'message' => 'Unauthorized access'
@@ -338,9 +403,13 @@ class CategoryController extends Controller
             'total_categories' => Category::count(),
             'active_categories' => Category::where('is_active', true)->count(),
             'inactive_categories' => Category::where('is_active', false)->count(),
-            'categories_with_reports' => Category::has('reports')->count(),
-            'categories_without_reports' => Category::doesntHave('reports')->count()
         ];
+
+        // Only add report-related statistics if the relationship exists
+        if (method_exists(Category::class, 'reports')) {
+            $stats['categories_with_reports'] = Category::has('reports')->count();
+            $stats['categories_without_reports'] = Category::doesntHave('reports')->count();
+        }
 
         return response()->json([
             'success' => true,
